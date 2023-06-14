@@ -3,8 +3,9 @@ lets chat!!!
 <form id="forms">
     <input type="text" name="message" />
 </form>
-<div id="messages">
-    <br>
+<div>
+    <div id="messages">
+    </div>
 </div>
 
 <body>
@@ -14,11 +15,9 @@ lets chat!!!
         chatSocket.onmessage = function(e) {
             let data = JSON.parse(e.data)
             if (data.type === 'chat') {
-                let m = data.message
                 let messages = document.getElementById('messages')
                 messages.insertAdjacentHTML(
-                    'beforeend', '<div>${m}</div>'
-                )
+                    'beforeend', '<div>' + data.message + '</div>')
             }
         }
         let form = document.getElementById('forms')
